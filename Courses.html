@@ -50,7 +50,7 @@ font-awesome.min.css" rel="stylesheet">
                             <li><a href="#Cs">Chapter 1: Database Management System</a></li>
                             <li><a href="#NSCBL">Chapter 2: Data communication and networking</a></li>
                             <li><a href="#CSaOA">Chapter 3: Web Tech-II</a></li>
-                            <li><a href="#PCaL">Chapter 4: C Programming II</a></li>
+                            <li><a href="#PcaL">Chapter 4: C Programming II</a></li>
                             <li><a href="#WT">Chapter 5: Object oriented programming</a></li>
                             <li><a href="#M">Chapter 6: Software development life cycle</a></li>
                             <li><a href="#ISaCL">Chapter 7: Recent Trends in technology</a></li>
@@ -462,6 +462,191 @@ font-awesome.min.css" rel="stylesheet">
 
                         <h1 id="PcaL">C Programming II</h1>
                           <h3>NOT YET</h3> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<h2>Functions</h2>
+  <p>
+    A <strong>function</strong> is a block of reusable code that performs a specific task.
+    It helps break a large program into smaller, manageable parts, making the code more organized, modular, and easier to maintain.
+  </p>
+
+  <h2>Syntax of Functions</h2>
+  <p>
+    The general syntax of a function in languages like C/C++ is:
+  </p>
+  <pre>
+return_type function_name(parameter_list)
+{
+    // body of the function
+}
+  </pre>
+  <p>
+    For example:
+  </p>
+  <pre>
+int add(int a, int b)
+{
+    return a + b;
+}
+  </pre>
+
+  <h2>Types of Functions</h2>
+  <ul>
+    <li><strong>Library Functions:</strong> These are pre-defined functions provided by programming languages. Examples include <code>printf()</code>, <code>scanf()</code>, and <code>sqrt()</code>.</li>
+    <li><strong>User-Defined Functions:</strong> These are functions created by the programmer to perform specific tasks according to the requirements of the program.</li>
+  </ul>
+
+  <h2>Components of a Function</h2>
+
+  <h3>i. Function Prototype</h3>
+  <p>
+    A function prototype declares the function to the compiler before its actual definition.
+    It specifies the function name, return type, and parameters. For example:
+  </p>
+  <pre>
+int add(int, int);
+  </pre>
+
+  <h3>ii. Function Call</h3>
+  <p>
+    A function call is the statement used to execute the function. It passes the required arguments to the function. For example:
+  </p>
+  <pre>
+sum = add(5, 10);
+  </pre>
+
+  <h3>iii. Function Definition</h3>
+  <p>
+    The function definition contains the actual body of the function — the statements that perform the task. For example:
+  </p>
+  <pre>
+int add(int a, int b)
+{
+    return a + b;
+}
+  </pre>
+
+  <h3>iv. Return Type</h3>
+  <p>
+    The return type specifies the type of value that the function returns to the calling function.
+    For example, in <code>int add()</code>, the return type is <code>int</code>.
+    A function can also have a <code>void</code> return type if it does not return any value.
+  </p>
+
+<h2>Storage Classes</h2>
+
+  <h3>i. Automatic Storage Class</h3>
+  <p>
+    The <strong>automatic</strong> storage class is the default for local variables declared inside a function or block.
+    These variables are created when the block is entered and destroyed when it is exited.
+    The keyword <code>auto</code> can be used but is usually omitted.
+  </p>
+  <pre>
+void main() {
+    auto int x = 10; // same as int x = 10;
+}
+  </pre>
+
+  <h3>ii. External Storage Class</h3>
+  <p>
+    The <strong>external</strong> storage class extends the visibility of a variable or function to all files in a program.
+    The keyword <code>extern</code> is used to declare a global variable or function that is defined in another file.
+  </p>
+  <pre>
+// File1.c
+int count = 5;
+
+// File2.c
+extern int count;
+void main() {
+    printf("%d", count);
+}
+  </pre>
+
+  <h3>iii. Register Storage Class</h3>
+  <p>
+    The <strong>register</strong> storage class tells the compiler to store the variable in a CPU register instead of RAM for faster access.
+    It is used for variables that are frequently accessed, like loop counters.
+  </p>
+  <pre>
+void main() {
+    register int i;
+    for (i = 0; i < 10; i++) {
+        printf("%d ", i);
+    }
+}
+  </pre>
+
+  <h3>iv. Static Storage Class</h3>
+  <p>
+    The <strong>static</strong> storage class retains the value of a variable between function calls.
+    A static variable inside a function keeps its previous value when the function is called again.
+  </p>
+  <pre>
+void counter() {
+    static int count = 0;
+    count++;
+    printf("%d\n", count);
+}
+  </pre>
+
+  <h2>Recursive Function</h2>
+  <p>
+    A <strong>recursive function</strong> is a function that calls itself to solve a problem by breaking it into smaller sub-problems.
+    Every recursive function must have a base condition to stop the recursion.
+  </p>
+
+  <h3>Syntax</h3>
+  <pre>
+return_type function_name(parameters) {
+    if (base_condition) {
+        return result;
+    } else {
+        return function_name(smaller_problem);
+    }
+}
+  </pre>
+
+  <h3>Example: Factorial using Recursion</h3>
+  <pre>
+#include <stdio.h></stdio.h>
+int factorial(int n) {
+    if (n == 0)
+        return 1;
+    else
+        return n * factorial(n - 1);
+}
+void main() {
+    int result = factorial(5);
+    printf("Factorial is %d", result);
+}
+  </pre>
+<img src="Images/f.png">
+
+
+  <h2>Passing an Array to a Function</h2>
+  <p>
+    Arrays can be passed to a function by passing the array name, which acts as a pointer to its first element.
+    The function can then access and modify the array elements.
+  </p>
+
+  <h3>Example: Sum of Array Elements</h3>
+  <pre>
+#include <stdio.h>
+void sumArray(int arr[], int size) {
+    int sum = 0;
+    int i; 
+    for (i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    printf("Sum: %d\n", sum);
+}
+
+int main() {
+    int numbers[] = {1, 2, 3, 4, 5};
+    sumArray(numbers, 5);
+    return 0;
+}
+  </pre>
+  <img src="Images/g.png">
 
 
 
